@@ -1,4 +1,4 @@
-import 'package:contador/src/pages/home_page.dart';
+import 'package:contador/src/pages/contador_page.dart';
 import 'package:flutter/material.dart';
 
   class MyApp extends StatelessWidget {
@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
     @override
     Widget build(BuildContext context) {
       return MaterialApp(
-        home: Center(child: HomePage()),
+        debugShowCheckedModeBanner: false, // Hide debug banner
+        home: Center(child: ContadorPage()),
       );
     }
   }
