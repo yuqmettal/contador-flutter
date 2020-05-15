@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart'; 
-
+import 'package:flutter/material.dart';
 
 class ContadorPage extends StatefulWidget {
   ContadorPage({Key key}) : super(key: key);
@@ -9,7 +8,6 @@ class ContadorPage extends StatefulWidget {
 }
 
 class _ContadorPageState extends State<ContadorPage> {
-
   final _estiloTexto = new TextStyle(fontSize: 25);
   int _conteo = 0;
 
@@ -24,19 +22,38 @@ class _ContadorPageState extends State<ContadorPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Numero de taps', style: _estiloTexto,),
+            Text(
+              'Numero de taps',
+              style: _estiloTexto,
+            ),
             Text('$_conteo', style: _estiloTexto),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _conteo ++;
-          setState(() {});
-        },
-        child: Icon(Icons.add),
-        ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: _crearBotones(),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+
+  Widget _crearBotones() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: <Widget>[
+        SizedBox(
+          width: 30.0,
+        ),
+        FloatingActionButton(onPressed: _reset, child: Icon(Icons.exposure_zero),
+        ),
+        Expanded(child: SizedBox()),
+        FloatingActionButton(onPressed: _sustraer, child: Icon(Icons.remove),
+        ),
+        Expanded(child: SizedBox()),
+        FloatingActionButton(onPressed: _add, child: Icon(Icons.add),),
+      ],
+    );
+  }
+
+  void _add() => setState(() => _conteo++);
+  void _sustraer() => setState(() => _conteo--);
+  void _reset() => setState(() => _conteo = 0);
 }
